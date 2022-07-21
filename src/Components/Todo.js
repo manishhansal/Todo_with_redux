@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addTodos } from "../Redux/reducer";
+import "../CSS/Todo.css";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,12 +16,11 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const Todos = (props) => {
-  
-  console.log("props",props);
-  
+  console.log("props", props);
+
   const [todo, setTodo] = useState("");
-  
-    const add = () => {
+
+  const add = () => {
     if (todo === "") {
       alert("Input is Empty");
     } else {
@@ -32,7 +32,6 @@ const Todos = (props) => {
       setTodo("");
     }
   };
-  
 
   const handleChange = (e) => {
     setTodo(e.target.value);
@@ -45,20 +44,20 @@ const Todos = (props) => {
         onChange={(e) => handleChange(e)}
         className="todo-input"
         value={todo}
+        placeholder="Enter Your Todos"
       />
 
-      <button className="add-btn"  onClick={() => add()}>
+      <button className="add-btn" onClick={() => add()}>
         Add
       </button>
       <br />
-      
+
       <ul>
         {props.todos.length > 0 &&
           props.todos.map((item) => {
             return <li key={item.id}>{item.item}</li>;
           })}
       </ul>
-        
     </div>
   );
 };
